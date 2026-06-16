@@ -1,20 +1,31 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
 @plugin "daisyui/theme" {
-  name: "pink";
-  default: false;
+  name: "quickquiz";
+  default: true;
   prefersdark: false;
-  color-scheme: "light";
+  color-scheme: light;
+
+  /* Primary: Red-9 (Pink) */
+  --color-primary: #ff8fa2;
+  --color-primary-content: #ffffff;
+  
+  /* Secondary: Red-11 (Deep Pink/Maroon) */
+  --color-secondary: #b34b61;
+  --color-secondary-content: #ffffff;
+  
+  /* Accent: Red-7 (Light Pink) */
+  --color-accent: #fda3b1;
+  --color-accent-content: #ffffff;
+  
+  /* Base Colors: Gray Scale */
   --color-base-100: #fcfcfd;
   --color-base-200: #f9f9fb;
   --color-base-300: #eff0f3;
   --color-base-content: #1e1f24;
-  --color-primary: #ff8fa2;
-  --color-primary-content: #ffffff;
-  --color-secondary: #b34b61;
-  --color-secondary-content: #ffffff;
-  --color-accent: #fda3b1;
-  --color-accent-content: #ffffff;
+  
+  /* System Colors */
   --color-neutral: #1e1f24;
   --color-neutral-content: #ffffff;
   --color-info: #8b8d98;
@@ -25,25 +36,53 @@
   --color-warning-content: #ffffff;
   --color-error: #ef4444;
   --color-error-content: #ffffff;
-  --radius-selector: 0.5rem;
-  --radius-field: 2rem;
-  --radius-box: 2rem;
+
+  /* UI Styling */
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1.5rem;
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
   --border: 1px;
-  --depth: 0;
-  --noise: 1;
+  --depth: 1;
+  --noise: 0;
 }
-
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* Mapping full palette for utility usage (optional but helpful) */
+  --color-red-1: #fffcfc;
+  --color-red-2: #fff7f8;
+  --color-red-3: #ffe9ec;
+  --color-red-4: #ffd8df;
+  --color-red-5: #ffc9d2;
+  --color-red-6: #ffb8c3;
+  --color-red-7: #fda3b1;
+  --color-red-8: #f58699;
+  --color-red-9: #ff8fa2;
+  --color-red-10: #f38497;
+  --color-red-11: #b34b61;
+  --color-red-12: #6c0028;
+
+  --color-gray-1: #fcfcfd;
+  --color-gray-2: #f9f9fb;
+  --color-gray-3: #eff0f3;
+  --color-gray-4: #e7e8ec;
+  --color-gray-5: #e0e1e6;
+  --color-gray-6: #d8d9e0;
+  --color-gray-7: #cdced7;
+  --color-gray-8: #b9bbc6;
+  --color-gray-9: #8b8d98;
+  --color-gray-10: #80828d;
+  --color-gray-11: #62636c;
+  --color-gray-12: #1e1f24;
 }
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-base-100 text-base-content min-h-screen font-sans;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
