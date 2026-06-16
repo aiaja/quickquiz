@@ -28,8 +28,8 @@ export default function ResultCard({
   };
 
   let badge = "🏆";
-  let title = "Luar Biasa!";
-  let subtitle = "Status: Legenda Trivia";
+  let title = "Excellent!";
+  let subtitle = "Status: Trivia Legend";
 
   if (stats.percentage < 40) {
     badge = "💪";
@@ -208,7 +208,7 @@ export default function ResultCard({
                 <div className="space-y-1.5">
                   {!isUnanswered && !isCorrect && (
                     <div className="flex items-center gap-2">
-                      <XCircle className="w-4 h-4 text-error flex-shrink-0" />
+                      <XCircle className="w-4 h-4 text-error shrink-0" />
                       <span
                         className="text-sm text-error/70"
                         dangerouslySetInnerHTML={{
@@ -218,7 +218,7 @@ export default function ResultCard({
                     </div>
                   )}
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-success flex-shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-success shrink-0" />
                     <span
                       className={`text-sm font-bold ${isCorrect && !isUnanswered ? "text-success" : "text-base-content"}`}
                       dangerouslySetInnerHTML={{

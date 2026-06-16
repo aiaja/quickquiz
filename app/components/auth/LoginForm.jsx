@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { LogIn, AlertCircle } from "lucide-react";
+import { LogIn, AlertCircle, Info } from "lucide-react";
 import { useAuthStore } from "~/stores/authStore";
 
 export default function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  
+
   const navigate = useNavigate();
   const login = useAuthStore((state) => state.login);
 
@@ -16,11 +16,11 @@ export default function LoginForm() {
     setError("");
 
     if (username.length < 3) {
-      setError("Username minimal 3 karakter");
+      setError("Username must be at least 3 characters");
       return;
     }
     if (password.length < 6) {
-      setError("Password minimal 6 karakter");
+      setError("Password must be at least 6 characters");
       return;
     }
 
@@ -28,8 +28,18 @@ export default function LoginForm() {
     if (result.success) {
       navigate("/setup");
     } else {
-      setError(result.error || "Terjadi kesalahan saat login");
+      setError(result.error || "An error occurred while logging in");
     }
+  };
+
+  const mockCredentials = {
+    username: "demo_user",
+    password: "demo123",
+  };
+
+  const handleQuickFill = () => {
+    setUsername(mockCredentials.username);
+    setPassword(mockCredentials.password);
   };
 
   return (
@@ -38,7 +48,9 @@ export default function LoginForm() {
         <div className="flex flex-col items-center gap-2">
           <img src="/logo.svg" alt="Logo" className="w-48 h-48" />
           <p className="text-sm text-base-content/60 text-center font-medium">
-Test your knowledge! Log in or sign up automatically to start the quiz.          </p>
+            Test your knowledge! Log in or sign up automatically to start the
+            quiz.{" "}
+          </p>
         </div>
 
         {error && (
@@ -50,54 +62,90 @@ Test your knowledge! Log in or sign up automatically to start the quiz.         
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <fieldset className="fieldset bg-base-200 p-6 rounded-2xl border border-base-300">
-            <legend className="fieldset-legend text-xs font-bold uppercase tracking-widest text-primary">Login</legend>
-            
+            <legend className="fieldset-legend text-xs font-bold uppercase tracking-widest text-primary">
+              SIGNIN / Signup
+            </legend>
+
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text font-bold">Username</span>
               </label>
-              <input 
-                type="text" 
-                placeholder="john_doe" 
-                className="input input-bordered bg-base-100 focus:input-primary w-full font-medium" 
+              <input
+                type="text"
+                placeholder="john_doe"
+                className="input input-bordered bg-base-100 focus:input-primary w-full font-medium"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                required 
+                required
               />
-              <p className="mt-1 text-[10px] text-base-content/40 italic">Minimum 3 characters</p>
+              <p className="mt-1 text-[10px] text-base-content/40 italic">
+                Minimum 3 characters
+              </p>
             </div>
 
             <div className="form-control w-full mt-4">
               <label className="label">
                 <span className="label-text font-bold">Password</span>
               </label>
-              <input 
-                type="password" 
-                placeholder="••••••••" 
-                className="input input-bordered bg-base-100 focus:input-primary w-full font-medium" 
+              <input
+                type="password"
+                placeholder="••••••••"
+                className="input input-bordered bg-base-100 focus:input-primary w-full font-medium"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required 
+                required
               />
-              <p className="mt-1 text-[10px] text-base-content/40 italic">Minimum 6 characters</p>
+              <p className="mt-1 text-[10px] text-base-content/40 italic">
+                Minimum 6 characters
+              </p>
             </div>
           </fieldset>
 
-          <div className="card-actions">
-            <button type="submit" className="btn btn-primary btn-lg w-full text-white font-black shadow-lg shadow-primary/30">
-              Log In / Sign Up Now
+          <div className="md:col-span-2 bg-primary/5 border border-primary/10 p-4 rounded-xl flex items-center gap-2">
+            <div className="bg-primary/20 p-1 rounded-full">
+              <Info className="w-3 h-3 text-primary" />
+            </div>
+            <div>
+              <p className="text-[11px] leading-relaxed text-base-content/70 font-medium">
+                Don't have an account?{" "}
+                <span className="text-primary font-bold">
+                  A new account is automatically created{" "}
+                </span>{" "}
+                if the username doesn't exist.{" "}
+              </p>
+            </div>
+          </div>
+          <div className="card-actions flex flex-col gap-3">
+            <button
+              type="button"
+              onClick={handleQuickFill}
+              className="btn btn-outline btn-sm w-full text-primary border-primary/30 hover:border-primary hover:bg-primary/5"
+            >
+              Use Demo Account
+            </button>
+            <button
+              type="submit"
+              className="btn btn-primary btn-lg w-full text-white font-black shadow-lg shadow-primary/30"
+            >
+              Sign in / Auto-register{" "}
             </button>
           </div>
         </form>
 
-        <div className="divider text-[10px] font-bold text-base-content/30 uppercase tracking-[0.2em]">Attention</div>
-        
+        {/* <div className="divider text-[10px] font-bold text-base-content/30 uppercase tracking-[0.2em]">
+          Attention
+        </div>
+
         <div className="bg-primary/5 p-4 rounded-xl flex gap-4 items-center border border-primary/10">
           <span className="text-2xl">✨</span>
           <p className="text-[11px] leading-relaxed text-base-content/70 font-medium">
-            Our system will <span className="text-primary font-bold">automatically register a new account</span> if the username is not yet registered.
+            Our system will{" "}
+            <span className="text-primary font-bold">
+              automatically register a new account
+            </span>{" "}
+            if the username is not yet registered.
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

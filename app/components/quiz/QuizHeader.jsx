@@ -56,7 +56,7 @@ export default function QuizHeader({
       {/* Progress Bar with Pink Gradient */}
       <div className="w-full h-1.5 bg-base-300 overflow-hidden">
         <div
-          className="h-full bg-gradient-to-r from-primary/60 to-primary transition-all duration-700 ease-out rounded-r-full"
+          className="h-full bg-linear-to-r from-primary/60 to-primary transition-all duration-700 ease-out rounded-r-full"
           style={{ width: `${progressPercentage}%` }}
         ></div>
       </div>

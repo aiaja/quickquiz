@@ -11,15 +11,13 @@ export default function QuestionCard({ question, onAnswer }) {
   }, [question.id]);
 
   const handleSelect = (answer) => {
-    if (isRevealed) return; // Prevent multiple clicks
+    if (isRevealed) return; 
     
     setSelectedAnswer(answer);
     setIsRevealed(true);
-
-    // Auto-advance after 800ms
     setTimeout(() => {
       onAnswer(answer);
-    }, 800);
+    }, 2000);
   };
 
   const getButtonClass = (answer) => {

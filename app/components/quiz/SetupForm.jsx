@@ -34,7 +34,7 @@ export default function SetupForm() {
         }
       } catch (err) {
         if (isMounted) {
-          setError("Gagal memuat kategori. Periksa koneksi internet Anda.");
+          setError("Failed to load categories. Please check your internet connection.");
           setIsLoadingCategories(false);
         }
       }
@@ -68,7 +68,7 @@ export default function SetupForm() {
       const rawQuestions = await fetchQuestions(params);
       
       if (rawQuestions.length === 0) {
-        throw new Error("Tidak ada soal ditemukan untuk kombinasi ini.");
+        throw new Error("No questions found for this combination.");
       }
 
       const selectedCategory = categories.find(c => c.id === parseInt(categoryId));
@@ -117,7 +117,7 @@ export default function SetupForm() {
         )}
 
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Kategori */}
+          {/* Category */}
           <div className="form-control md:col-span-2">
             <label className="label">
               <span className="label-text font-bold">Choose Category</span>
