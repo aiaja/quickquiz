@@ -190,7 +190,7 @@ export default function SetupForm() {
             <label className="label">
               <span className="label-text font-bold">Question Type</span>
             </label>
-            <div className="flex gap-4">
+            <div className="flex w-full flex-col md:flex-row gap-4">
               <label className={`label cursor-pointer gap-2 border p-3 rounded-lg flex-1 transition-colors ${type === "" ? "border-primary bg-primary/5" : "border-base-300"}`}>
                 <input type="radio" name="type" className="radio radio-primary" checked={type === ""} onChange={() => setType("")} />
                 <span className="label-text font-medium">Any Type</span>
